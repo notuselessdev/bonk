@@ -1,0 +1,56 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+      - GOPRIVATE=github.com/taigrr/apple-silicon-accelerometer
+    goos:
+      - darwin
+    goarch:
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- .Os }}_
+      {{- .Arch }}
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+
+brews:
+  - repository:
+      owner: notuselessdev
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    homepage: "https://github.com/notuselessdev/bonk"
+    description: "Yells 'ow!' when you bonk the laptop. Uses Apple Silicon accelerometer."
+    license: "MIT"
+    install: |
+      bin.install "bonk"
+    test: |
+      system "#{bin}/bonk", "--version"
+    caveats: |
+      bonk requires sudo to access the accelerometer:
+        sudo bonk
+
+release:
+  github:
+    owner: notuselessdev
+    name: bonk
