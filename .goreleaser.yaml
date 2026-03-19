@@ -38,6 +38,7 @@ brews:
       owner: notuselessdev
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    directory: Formula
     homepage: "https://github.com/notuselessdev/bonk"
     description: "Yells 'ow!' when you bonk the laptop. Uses Apple Silicon accelerometer."
     license: "MIT"
