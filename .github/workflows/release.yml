@@ -22,19 +22,12 @@ jobs:
         with:
           go-version: "1.26"
 
-      - name: Configure private modules
-        run: git config --global url."https://${{ secrets.GH_PAT }}@github.com/".insteadOf "https://github.com/"
-        env:
-          GOPRIVATE: github.com/taigrr/apple-silicon-accelerometer
-
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
-          distribution: goreleaser-pro
+          distribution: goreleaser
           version: latest
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GORELEASER_KEY: ${{ secrets.GORELEASER_KEY }}
           HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
-          GOPRIVATE: github.com/taigrr/apple-silicon-accelerometer
