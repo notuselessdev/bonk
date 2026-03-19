@@ -224,7 +224,7 @@ within a minute, the more intense the sounds become.
 
 Use --halo to play random audio clips from Halo soundtracks on each bonk.
 
-A NotUseless project. https://notuseless.com`,
+A NotUseless project. https://notuseless.dev/`,
 		Version: version,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			tuning := defaultTuning()

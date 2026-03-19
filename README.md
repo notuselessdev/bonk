@@ -1,6 +1,6 @@
 # bonk
 
-Bonk your MacBook, it yells back. A [NotUseless](https://notuseless.com) project.
+Bonk your MacBook, it yells back. A [NotUseless](https://notuseless.dev/) project.
 
 Uses the Apple Silicon accelerometer (Bosch BMI286 IMU via IOKit HID) to detect physical hits on your laptop and plays audio responses. Single binary, no dependencies.
 
